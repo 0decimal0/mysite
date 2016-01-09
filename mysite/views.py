@@ -1,6 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render_to_response
 import datetime
 def current_time(request):
     now = datetime.datetime.now()
-    html = "<html><body> Its now %s.</body></html>"%now
-    return HttpResponse(html)
+    return render_to_response('current_datetime.html',{'current_date':now })
