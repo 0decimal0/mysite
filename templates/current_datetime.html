@@ -1,6 +1,5 @@
-<!doctype html>
-<title><head>the time page</head></title>
-<body>
-  It is now {{current_date}}.
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}The current time {% endblock %}
+{% block content %}
+<p>The current time is {{current_date}}.</p>
+{% endblock %}
