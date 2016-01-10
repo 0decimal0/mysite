@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^ahead_time/$',hours_more,{'offset':7}),
     #we can also use the below pattern
     #url(r'^ahead_time/([0-9])/$',hours_more),
+    url(r'^admin/',include(admin.site.urls)),
 )

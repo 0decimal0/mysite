@@ -11,6 +11,8 @@ class Publisher(models.Model):
     website = models.URLField()
     def __str__(self):
         return '%s %s %s' %(self.name,self.address,self.country)
+    class Admin:
+        pass
 
 class Author(models.Model):
     first_name = models.CharField(max_length=30)
@@ -18,6 +20,8 @@ class Author(models.Model):
     email = models.EmailField()
     def __str__(self):
         return '%s %s' %(self.first_name,self.last_name)
+    class Admin:
+        pass
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
@@ -26,3 +30,5 @@ class Book(models.Model):
     publication_date = models.DateField()
     def __str__(self):
         return self.title
+    class Admin:
+        pass
