@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 admin.autodiscover()
+from books.views import search
 from mysite.views import current_time
 from mysite.views import hours_more
 urlpatterns = patterns('',
@@ -14,4 +15,5 @@ urlpatterns = patterns('',
     #we can also use the below pattern
     #url(r'^ahead_time/([0-9])/$',hours_more),
     url(r'^admin/',include(admin.site.urls)),
+    url(r'^search/$', search),
 )
