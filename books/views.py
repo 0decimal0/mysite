@@ -1,7 +1,9 @@
-from django.shortcuts import render_to_response
+from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import render_to_response,render
 from django.db.models import Q
 from models import Publisher
-
+from forms import ContactForm
+from django.template import RequestContext
 # Create your views here.
 def search(request):
     query = request.GET.get('q_inbox','')
@@ -15,3 +17,7 @@ def search(request):
     else:
         results =[]
     return render_to_response("books/search.html",{"results":results,"query":query })
+@csrf_protect
+def contact(response):
+    form = ContactForm()
+    return render_to_response('contact.html',{'form':form},context_instance=RequestContext(response))
