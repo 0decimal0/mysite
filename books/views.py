@@ -4,6 +4,8 @@ from django.db.models import Q
 from models import Publisher
 from forms import ContactForm
 from django.template import RequestContext
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 # Create your views here.
 def search(request):
     query = request.GET.get('q_inbox','')
@@ -21,6 +23,13 @@ def search(request):
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        if form.is_valid():
+            topic = form.cleaned_data['topic']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data.get('sender','rohit.is.superstar@gmail.com')
+            send_mail('Feedback from your site, topic :%s'% topic,message,sender,['rohit.is.superstar@gmail.com']
+                    )
+            return HttpResponseRedirect('/contact/thanks')
     else:
         form = ContactForm()
     return render_to_response('contact.html',{'form':form},context_instance=RequestContext(request))
